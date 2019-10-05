@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container mt-3">
+
+		<div class="card bg-light">
+
+			<div class="card-header" th:text="${title}"></div>
+			<div class="card-body">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido(s)</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Fecha</th>
+							<th scope="col" colspan="2"><a th:href="@{/form}"
+								class="btn btn-success btn-block">Crear Cliente</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="i: ${clientes}">
+							<th scope="row">
+								<a class="btn btn-info btn-xs" th:href="@{/view/} + ${i.id}" th:text="${i.id}"></a>
+							</th>
+							<th scope="row" th:text="${i.nombre}"></th>
+							<td th:text="${i.apellido}"></td>
+							<td th:text="${i.email}"></td>
+							<td th:text="${i.createAt}"></td>
+							<td><a th:href="@{/form/} + ${i.id}"
+								class="btn btn-info btn-block">Editar</a></td>
+							<td><a th:href="@{/delete/} + ${i.id}"
+								class="btn btn-danger btn-block" 
+								onclick="return confirm('Esta seguro que quieres eliminar')">Eliminar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<nav th:replace="paginator-nav :: paginator"></nav>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

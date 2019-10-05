@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<style>
+	form {
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 1rem;
+	}
+	.tr {
+		width: 20%;
+		text-align: center;
+	}
+</style>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container mt-3">
+
+		<h1 th:text="${title}"></h1>
+		<hr>
+		
+		<form th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data">
+			<table class="table table-bordered">
+				<tr>
+					<td class="tr">Nombre</td>
+					<td>
+						<div class="form-group">
+							<input 
+								class="form-control" 
+								type="text" 
+								placeholder="Nombre" 
+								th:field="*{nombre}" 
+								required
+								minlength="3">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tr">Apellido</td>
+					<td>
+						<div class="form-group">
+							<input 
+								class="form-control" 
+								type="text" 
+								placeholder="apellido" 
+								th:field="*{apellido}" 
+								required
+								minlength="3">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tr">E-mail</td>
+					<td>
+						<div class="form-group">
+							<input 
+								class="form-control" 
+								type="email" 
+								placeholder="E-mail" 
+								th:field="*{email}"
+								required>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tr">Fecha</td>
+					<td>
+						<div class="form-group">
+							<input 
+								class="form-control" 
+								type="text" 
+								placeholder="Fecha" 
+								th:field="*{createAt}"
+								required>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tr">Foto</td>
+					<td>
+						<div class="form-group">
+							<input 
+								class="form-control" 
+								type="file" 
+								name="file"
+								required>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="tr">
+						<input class="btn btn-primary btn-block" type="submit" value="Crear Cliente">
+						<a th:href="@{/list}" class="btn btn-warning btn-block">Regresar</a>
+					</td>
+				</tr>
+			</table>
+			
+		</form>
+
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	
+</body>
+</html>
